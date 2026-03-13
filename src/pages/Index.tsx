@@ -37,7 +37,7 @@ export default function Index() {
       {/* Background Image - Sempre visível, com overlay escuro suave para leitura */}
       <div 
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-60 transition-opacity duration-1000"
-        style={{ backgroundImage: "url('/background-login.png')" }}
+        style={{ backgroundImage: "url('/background-login.jpg')" }}
       />
       <div className="absolute inset-0 z-0 bg-black/50 backdrop-blur-[2px]" />
 
