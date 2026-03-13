@@ -9,23 +9,16 @@ import { Input } from "@/components/ui/input";
 import { useNavigate } from "react-router-dom";
 import { getVistorias, getAllExecucao, getCondominios, type Vistoria, type VistoriaExecucao, type Condominio } from "@/lib/sheetsApi";
 
-const ADMIN_PASSWORD = "gestora2024";
-
 export default function Admin() {
   const [vistorias, setVistorias] = useState<Vistoria[]>([]);
   const [execucao, setExecucao] = useState<VistoriaExecucao[]>([]);
   const [condominios, setCondominios] = useState<Condominio[]>([]);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (isAuthenticated) {
-      fetchData();
-    }
-  }, [isAuthenticated]);
+    fetchData();
+  }, []);
 
   const fetchData = async () => {
     setLoading(true);
@@ -42,16 +35,6 @@ export default function Admin() {
       console.error('Erro ao carregar dados:', err);
     } finally {
       setLoading(false);
-    }
-  };
-
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (password === ADMIN_PASSWORD) {
-      setIsAuthenticated(true);
-      setError("");
-    } else {
-      setError("Senha incorreta");
     }
   };
 
@@ -74,41 +57,6 @@ export default function Admin() {
   };
 
   const allMetrics = getMetrics(vistorias, execucao);
-
-  if (!isAuthenticated) {
-    return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
-        <Card className="w-full max-w-md">
-          <CardHeader className="text-center">
-            <div className="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-              <Lock className="w-8 h-8 text-primary" />
-            </div>
-            <CardTitle className="text-2xl">Área da Gestora</CardTitle>
-            <p className="text-slate-500 mt-2">Digite a senha para acessar os relatórios</p>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handleLogin} className="space-y-4">
-              <Input
-                type="password"
-                placeholder="Senha"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="h-12 text-lg text-center"
-                autoFocus
-              />
-              {error && <p className="text-red-500 text-sm text-center">{error}</p>}
-              <Button type="submit" className="w-full h-12 text-lg font-bold">
-                Entrar
-              </Button>
-              <Button type="button" variant="ghost" className="w-full" onClick={() => navigate('/')}>
-                <ArrowLeft className="w-4 h-4 mr-2" /> Voltar
-              </Button>
-            </form>
-          </CardContent>
-        </Card>
-      </div>
-    );
-  }
 
   if (loading) {
     return (
