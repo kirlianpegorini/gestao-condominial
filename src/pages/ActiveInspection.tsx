@@ -177,9 +177,16 @@ export default function ActiveInspection() {
     : currentBlock.location;
 
   return (
-    <div className="min-h-screen bg-background flex flex-col pb-28">
+    <div className="min-h-screen bg-slate-950 flex flex-col pb-28 relative font-sans text-slate-100">
+      {/* Background Image - Desfocada e Fixa */}
+      <div 
+        className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-80 pointer-events-none"
+        style={{ backgroundImage: "url('/background-login.jpg')" }}
+      />
+      <div className="fixed inset-0 z-0 bg-slate-950/80 backdrop-blur-lg pointer-events-none" />
+
       {/* Header with progress */}
-      <div className="bg-card px-4 py-3 shadow-lg sticky top-0 z-20 border-b border-border">
+      <div className="relative z-10 bg-slate-900/95 backdrop-blur-xl px-4 py-3 shadow-lg sticky top-0 border-b border-slate-800">
         <div className="flex justify-between text-sm font-medium text-muted-foreground mb-2">
           <span className="truncate max-w-[60%]">{nomeCondominio}</span>
           <span className="text-primary font-bold">{currentIndex + 1}/{blocks.length} • {progress}%</span>
@@ -189,7 +196,7 @@ export default function ActiveInspection() {
         </div>
       </div>
 
-      <div className="flex-1 p-4 max-w-2xl w-full mx-auto space-y-4">
+      <div className="relative z-10 flex-1 p-4 max-w-2xl w-full mx-auto space-y-4">
         <div className="mb-6">
           <h2 className="text-3xl font-black text-foreground tracking-tight">{blockTitle}</h2>
           <p className="text-muted-foreground text-sm mt-1">Verifique todos os itens abaixo</p>

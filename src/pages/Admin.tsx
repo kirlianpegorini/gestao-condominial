@@ -67,8 +67,16 @@ export default function Admin() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 p-4 md:p-8">
-      <div className="max-w-5xl mx-auto space-y-8">
+    <div className="min-h-screen p-4 md:p-8 relative overflow-hidden bg-slate-950 font-sans text-slate-100">
+      {/* Background Image - Desfocada e Fixa */}
+      <div 
+        className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-80 pointer-events-none"
+        style={{ backgroundImage: "url('/background-login.jpg')" }}
+      />
+      <div className="fixed inset-0 z-0 bg-slate-950/80 backdrop-blur-lg pointer-events-none" />
+
+      {/* Content */}
+      <div className="relative z-10 max-w-5xl mx-auto space-y-8">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div className="flex items-center gap-3">
@@ -209,14 +217,14 @@ function DashboardContent({ label, metrics, vistorias, execucao }: { label: stri
                 <CardTitle className="text-base">Problemas por Local</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="space-y-1 max-h-48 overflow-y-auto">
+                <div className="space-y-1 max-h-48 overflow-y-auto w-full">
                   {Object.entries(problemasPorLocal)
-                    .sort(([, a], [, b]) => b - a)
+                    .sort(([, a], [, b]) => (b as number) - (a as number))
                     .slice(0, 10)
                     .map(([local, count]) => (
                       <div key={local} className="flex justify-between text-sm">
-                        <span className="text-muted-foreground truncate">{local}</span>
-                        <Badge variant="destructive" className="ml-2 shrink-0">{count}</Badge>
+                        <span className="text-slate-300 truncate">{local.toString()}</span>
+                        <Badge variant="destructive" className="ml-2 shrink-0">{count as React.ReactNode}</Badge>
                       </div>
                     ))}
                 </div>

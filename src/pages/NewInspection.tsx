@@ -72,71 +72,81 @@ export default function NewInspection() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 p-4 flex flex-col items-center justify-center">
-      <Card className="w-full max-w-md shadow-lg border-0">
-        <CardHeader className="space-y-1">
-          <div className="flex items-center gap-2 mb-2">
-            <Button variant="ghost" size="icon" onClick={() => navigate('/')} className="-ml-2">
-              <ArrowLeft className="w-5 h-5" />
-            </Button>
-            <CardTitle className="text-2xl">Iniciar Vistoria</CardTitle>
-          </div>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleStart} className="space-y-5">
-            <div className="space-y-2">
-              <Label className="text-base">Condomínio</Label>
-              {loadingCondos ? (
-                <div className="flex items-center gap-2 text-muted-foreground h-12 px-3">
-                  <Loader2 className="w-4 h-4 animate-spin" /> Carregando...
-                </div>
-              ) : (
-                <select 
-                  className="flex h-12 w-full rounded-md border border-input bg-background px-3 py-2 text-base md:text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                  value={formData.idCondominio}
-                  onChange={handleCondoChange}
-                  required
-                >
-                  <option value="">Selecione...</option>
-                  {condominios.map(c => (
-                    <option key={c.ID_Condominio} value={c.ID_Condominio}>
-                      {c.Nome_Condominio}
-                    </option>
-                  ))}
-                </select>
-              )}
-            </div>
-            
-            <div className="space-y-2">
-              <Label className="text-base">Nome do Fiscal</Label>
-              <Input 
-                required 
-                className="h-12 text-base"
-                placeholder="Ex: João Silva"
-                value={formData.inspectorName}
-                onChange={(e) => setFormData({...formData, inspectorName: e.target.value})}
-              />
-            </div>
+    <div className="min-h-screen p-4 flex flex-col items-center justify-center relative overflow-hidden bg-slate-950 font-sans text-slate-100">
+      {/* Background Image - Desfocada e Fixa */}
+      <div 
+        className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-80 pointer-events-none"
+        style={{ backgroundImage: "url('/background-login.jpg')" }}
+      />
+      <div className="fixed inset-0 z-0 bg-slate-950/70 backdrop-blur-md pointer-events-none" />
 
-            <div className="space-y-2">
-              <Label className="text-base">Data</Label>
-              <Input 
-                type="date" 
-                required
-                className="h-12 text-base"
-                value={formData.date}
-                onChange={(e) => setFormData({...formData, date: e.target.value})}
-              />
-            </div>
-
-            <div className="pt-4">
-              <Button type="submit" className="w-full h-14 text-lg font-semibold" disabled={loading || loadingCondos}>
-                {loading ? 'Iniciando...' : 'Começar Vistoria'}
+      {/* Content */}
+      <div className="relative z-10 w-full max-w-md flex flex-col items-center">
+        <Card className="w-full shadow-2xl border-0 bg-white/95 backdrop-blur-xl">
+          <CardHeader className="space-y-1 border-b bg-slate-50/50 rounded-t-xl pb-4">
+            <div className="flex items-center gap-2">
+              <Button variant="ghost" size="icon" onClick={() => navigate('/')} className="-ml-2 hover:bg-slate-200/50">
+                <ArrowLeft className="w-5 h-5 text-slate-700" />
               </Button>
+              <CardTitle className="text-2xl text-slate-800">Iniciar Vistoria</CardTitle>
             </div>
-          </form>
-        </CardContent>
-      </Card>
+          </CardHeader>
+          <CardContent className="pt-6">
+            <form onSubmit={handleStart} className="space-y-5">
+              <div className="space-y-2">
+                <Label className="text-base font-semibold text-slate-700">Condomínio</Label>
+                {loadingCondos ? (
+                  <div className="flex items-center gap-2 text-muted-foreground h-12 px-3 bg-slate-50 rounded-md border border-slate-200">
+                    <Loader2 className="w-4 h-4 animate-spin" /> Carregando...
+                  </div>
+                ) : (
+                  <select 
+                    className="flex h-12 w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-base md:text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 text-slate-800 shadow-sm"
+                    value={formData.idCondominio}
+                    onChange={handleCondoChange}
+                    required
+                  >
+                    <option value="">Selecione o condomínio...</option>
+                    {condominios.map(c => (
+                      <option key={c.ID_Condominio} value={c.ID_Condominio}>
+                        {c.Nome_Condominio}
+                      </option>
+                    ))}
+                  </select>
+                )}
+              </div>
+              
+              <div className="space-y-2">
+                <Label className="text-base font-semibold text-slate-700">Nome do Fiscal</Label>
+                <Input 
+                  required 
+                  className="h-12 text-base border-slate-300 text-slate-800 shadow-sm focus-visible:ring-blue-500"
+                  placeholder="Ex: João Silva"
+                  value={formData.inspectorName}
+                  onChange={(e) => setFormData({...formData, inspectorName: e.target.value})}
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label className="text-base font-semibold text-slate-700">Data da Vistoria</Label>
+                <Input 
+                  type="date" 
+                  required
+                  className="h-12 text-base border-slate-300 text-slate-800 shadow-sm focus-visible:ring-blue-500"
+                  value={formData.date}
+                  onChange={(e) => setFormData({...formData, date: e.target.value})}
+                />
+              </div>
+
+              <div className="pt-6">
+                <Button type="submit" className="w-full h-14 text-lg font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-lg transition-transform active:scale-[0.98]" disabled={loading || loadingCondos}>
+                  {loading ? 'Preparando...' : 'Começar Vistoria'}
+                </Button>
+              </div>
+            </form>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 }
