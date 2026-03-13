@@ -36,10 +36,10 @@ export default function Index() {
     <div className="min-h-screen flex flex-col items-center p-6 relative overflow-hidden bg-slate-950 font-sans text-slate-100">
       {/* Background Image - Sempre visível, com overlay escuro suave para leitura */}
       <div 
-        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-60 transition-opacity duration-1000"
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-80 transition-opacity duration-1000"
         style={{ backgroundImage: "url('/background-login.jpg')" }}
       />
-      <div className="absolute inset-0 z-0 bg-black/50 backdrop-blur-[2px]" />
+      <div className="absolute inset-0 z-0 bg-black/40 backdrop-blur-[1px]" />
 
       {/* Content */}
       <div className="relative z-10 w-full max-w-md flex flex-col items-center mt-8 mb-auto">
