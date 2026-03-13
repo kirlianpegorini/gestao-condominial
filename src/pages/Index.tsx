@@ -38,7 +38,7 @@ export default function Index() {
       {!role && (
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-40 mix-blend-luminosity transition-opacity duration-1000"
-          style={{ backgroundImage: "url('/background-login.jpg')" }}
+          style={{ backgroundImage: "url('/background-login.png')" }}
         />
       )}
       <div className="absolute inset-0 z-0 bg-gradient-to-b from-slate-900/80 via-slate-950/90 to-slate-950" />
@@ -65,7 +65,7 @@ export default function Index() {
         >
           {/* Logo Verttek (Integrated text) */}
           <img 
-            src="/verttek-logo-full.jpg" 
+            src="/verttek-logo-full.png" 
             alt="Verttek - Gestão e Fiscalização Condominiais" 
             className="w-full max-w-[280px] object-contain drop-shadow-2xl"
           />
