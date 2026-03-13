@@ -70,20 +70,20 @@ export default function Admin() {
     <div className="min-h-screen p-4 md:p-8 relative overflow-hidden bg-slate-950 font-sans text-slate-100">
       {/* Background Image - Desfocada e Fixa */}
       <div 
-        className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-80 pointer-events-none"
+        className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-90 pointer-events-none"
         style={{ backgroundImage: "url('/background-login.jpg')" }}
       />
-      <div className="fixed inset-0 z-0 bg-slate-950/80 backdrop-blur-lg pointer-events-none" />
+      <div className="fixed inset-0 z-0 bg-slate-950/40 backdrop-blur-sm pointer-events-none" />
 
       {/* Content */}
       <div className="relative z-10 max-w-5xl mx-auto space-y-8">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <Button variant="outline" size="icon" onClick={() => navigate('/')} className="rounded-full shrink-0">
+            <Button variant="outline" size="icon" onClick={() => navigate('/')} className="rounded-full shrink-0 bg-slate-800/50 border-slate-700 hover:bg-slate-700 text-white">
               <ArrowLeft className="w-5 h-5" />
             </Button>
-            <h1 className="text-3xl font-bold text-foreground">Painel da Síndica</h1>
+            <h1 className="text-3xl font-bold text-white drop-shadow-md">Painel da Síndica</h1>
           </div>
           <div className="flex items-center gap-2 flex-wrap">
             <Button
@@ -106,10 +106,10 @@ export default function Admin() {
         </div>
 
         <Tabs defaultValue="all" className="w-full">
-          <TabsList className="mb-4 w-full sm:w-auto overflow-x-auto justify-start flex-nowrap h-auto p-1">
-            <TabsTrigger value="all" className="px-4 py-2 text-sm md:text-base">Visão Geral (Todos)</TabsTrigger>
+          <TabsList className="mb-6 w-full sm:w-auto overflow-x-auto justify-start flex-nowrap h-auto p-1 bg-slate-900/60 backdrop-blur-md border border-slate-700/50 rounded-lg">
+            <TabsTrigger value="all" className="px-4 py-2 text-sm md:text-base text-slate-300 data-[state=active]:bg-blue-600 data-[state=active]:text-white font-medium">Visão Geral (Todos)</TabsTrigger>
             {condominios.map((c) => (
-              <TabsTrigger key={c.ID_Condominio} value={c.ID_Condominio} className="px-4 py-2 text-sm md:text-base">
+              <TabsTrigger key={c.ID_Condominio} value={c.ID_Condominio} className="px-4 py-2 text-sm md:text-base text-slate-300 data-[state=active]:bg-blue-600 data-[state=active]:text-white font-medium">
                 {c.Nome_Condominio}
               </TabsTrigger>
             ))}
@@ -164,36 +164,36 @@ function DashboardContent({ label, metrics, vistorias, execucao }: { label: stri
   
   return (
     <div className="space-y-6">
-      <h2 className="text-xl font-semibold text-slate-700 mb-2">{label}</h2>
+      <h2 className="text-2xl font-bold text-white mb-4 drop-shadow-md">{label}</h2>
 
         {/* Metrics cards */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <Card>
+          <Card className="bg-slate-900/60 backdrop-blur-md border-blue-500/20 text-white shadow-xl">
             <CardContent className="pt-6 text-center">
-              <BarChart3 className="w-8 h-8 mx-auto text-primary mb-2" />
-              <p className="text-3xl font-bold">{totalVistorias}</p>
-              <p className="text-sm text-muted-foreground">Total Vistorias</p>
+              <BarChart3 className="w-8 h-8 mx-auto text-blue-400 mb-2 drop-shadow-[0_0_8px_rgba(96,165,250,0.8)]" />
+              <p className="text-4xl font-bold drop-shadow-md">{totalVistorias}</p>
+              <p className="text-sm font-semibold text-cyan-200 mt-1 uppercase tracking-wider">Total Vistorias</p>
             </CardContent>
           </Card>
-          <Card>
+          <Card className="bg-slate-900/60 backdrop-blur-md border-amber-500/20 text-white shadow-xl">
             <CardContent className="pt-6 text-center">
-              <Loader2 className="w-8 h-8 mx-auto text-amber-500 mb-2" />
-              <p className="text-3xl font-bold">{emAndamento}</p>
-              <p className="text-sm text-muted-foreground">Em Andamento</p>
+              <Loader2 className="w-8 h-8 mx-auto text-amber-400 mb-2 drop-shadow-[0_0_8px_rgba(251,191,36,0.8)]" />
+              <p className="text-4xl font-bold drop-shadow-md">{emAndamento}</p>
+              <p className="text-sm font-semibold text-amber-200 mt-1 uppercase tracking-wider">Em Andamento</p>
             </CardContent>
           </Card>
-          <Card>
+          <Card className="bg-slate-900/60 backdrop-blur-md border-green-500/20 text-white shadow-xl">
             <CardContent className="pt-6 text-center">
-              <CheckCircle className="w-8 h-8 mx-auto text-green-500 mb-2" />
-              <p className="text-3xl font-bold">{finalizadas}</p>
-              <p className="text-sm text-muted-foreground">Finalizadas</p>
+              <CheckCircle className="w-8 h-8 mx-auto text-green-400 mb-2 drop-shadow-[0_0_8px_rgba(74,222,128,0.8)]" />
+              <p className="text-4xl font-bold drop-shadow-md">{finalizadas}</p>
+              <p className="text-sm font-semibold text-green-200 mt-1 uppercase tracking-wider">Finalizadas</p>
             </CardContent>
           </Card>
-          <Card>
+          <Card className="bg-slate-900/60 backdrop-blur-md border-red-500/20 text-white shadow-xl">
             <CardContent className="pt-6 text-center">
-              <AlertTriangle className="w-8 h-8 mx-auto text-red-500 mb-2" />
-              <p className="text-3xl font-bold">{totalProblemas}</p>
-              <p className="text-sm text-muted-foreground">Total Problemas</p>
+              <AlertTriangle className="w-8 h-8 mx-auto text-red-500 mb-2 drop-shadow-[0_0_8px_rgba(239,68,68,0.8)]" />
+              <p className="text-4xl font-bold drop-shadow-md">{totalProblemas}</p>
+              <p className="text-sm font-semibold text-red-200 mt-1 uppercase tracking-wider">Total Problemas</p>
             </CardContent>
           </Card>
         </div>
@@ -201,30 +201,30 @@ function DashboardContent({ label, metrics, vistorias, execucao }: { label: stri
         {/* Extra metrics */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {comFoto > 0 && (
-            <Card>
+            <Card className="bg-slate-900/60 backdrop-blur-md border-blue-500/20 text-white shadow-xl">
               <CardContent className="pt-6 flex items-center gap-4">
-                <Camera className="w-8 h-8 text-blue-500" />
+                <Camera className="w-10 h-10 text-cyan-400 drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]" />
                 <div>
-                  <p className="text-2xl font-bold">{comFoto}</p>
-                  <p className="text-sm text-muted-foreground">Registros com foto</p>
+                  <p className="text-3xl font-bold drop-shadow-md">{comFoto}</p>
+                  <p className="text-sm font-semibold text-cyan-200 uppercase tracking-wider">Registros c/ foto</p>
                 </div>
               </CardContent>
             </Card>
           )}
           {Object.keys(problemasPorLocal).length > 0 && (
-            <Card>
-              <CardHeader className="pb-2">
-                <CardTitle className="text-base">Problemas por Local</CardTitle>
+            <Card className="bg-slate-900/60 backdrop-blur-md border-slate-700/50 text-white shadow-xl">
+              <CardHeader className="pb-2 border-b border-slate-700/50 mb-2">
+                <CardTitle className="text-base font-bold text-slate-100">Problemas por Local</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="space-y-1 max-h-48 overflow-y-auto w-full">
+                <div className="space-y-2 max-h-48 overflow-y-auto w-full pr-2">
                   {Object.entries(problemasPorLocal)
                     .sort(([, a], [, b]) => (b as number) - (a as number))
                     .slice(0, 10)
                     .map(([local, count]) => (
-                      <div key={local} className="flex justify-between text-sm">
-                        <span className="text-slate-300 truncate">{local.toString()}</span>
-                        <Badge variant="destructive" className="ml-2 shrink-0">{count as React.ReactNode}</Badge>
+                      <div key={local} className="flex justify-between items-center text-sm bg-slate-800/50 px-3 py-2 rounded-md border border-slate-700/50">
+                        <span className="text-cyan-100 font-medium truncate">{local.toString()}</span>
+                        <Badge variant="destructive" className="ml-2 shrink-0 bg-red-600 shadow-[0_0_8px_rgba(220,38,38,0.6)]">{count as React.ReactNode}</Badge>
                       </div>
                     ))}
                 </div>
@@ -235,7 +235,7 @@ function DashboardContent({ label, metrics, vistorias, execucao }: { label: stri
 
         {/* Vistorias list */}
         <div className="grid gap-6">
-          <h3 className="text-lg font-semibold text-slate-800 mt-4">Últimas Vistorias</h3>
+          <h3 className="text-2xl font-bold text-white mt-4 drop-shadow-md">Últimas Vistorias</h3>
           {vistorias.map(v => {
             const vistProblemas = execucao.filter(
               e => e.ID_Vistoria === v.ID_Vistoria && e.Resposta === 'Problema'
@@ -243,20 +243,20 @@ function DashboardContent({ label, metrics, vistorias, execucao }: { label: stri
             const isCompleted = v.Status === 'Finalizada';
             
             return (
-              <Card key={v.ID_Vistoria} className="border-0 shadow-md overflow-hidden">
-                <CardHeader className={`border-b ${isCompleted ? 'bg-slate-50' : 'bg-amber-50'}`}>
+              <Card key={v.ID_Vistoria} className="border border-slate-700/50 bg-slate-900/70 backdrop-blur-md shadow-xl overflow-hidden">
+                <CardHeader className={`border-b border-slate-700/50 ${isCompleted ? 'bg-slate-800/40' : 'bg-amber-900/20'}`}>
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div>
-                      <CardTitle className="text-xl mb-1 text-slate-800">{v.ID_Condominio}</CardTitle>
-                      <p className="text-sm text-slate-500 font-medium">
-                        {v.Data} • Fiscal: <span className="text-slate-700">{v.Fiscal}</span>
+                      <CardTitle className="text-xl mb-1 text-white">{v.ID_Condominio}</CardTitle>
+                      <p className="text-sm text-cyan-200 font-medium">
+                        {v.Data} • Fiscal: <span className="text-white drop-shadow-sm">{v.Fiscal}</span>
                       </p>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Badge variant={isCompleted ? 'default' : 'secondary'} className="w-fit text-sm px-3 py-1">
+                      <Badge variant={isCompleted ? 'default' : 'secondary'} className={`w-fit text-sm px-3 py-1 ${isCompleted ? 'bg-green-600 hover:bg-green-700' : 'bg-amber-500 hover:bg-amber-600'}`}>
                         {isCompleted ? 'Finalizada' : 'Em Andamento'}
                       </Badge>
-                      <Badge variant="outline" className="text-sm px-3 py-1">
+                      <Badge variant="outline" className="text-sm px-3 py-1 border-slate-500 text-slate-200 bg-slate-800/80">
                         {vistProblemas.length} {vistProblemas.length === 1 ? 'problema' : 'problemas'}
                       </Badge>
                     </div>
@@ -266,20 +266,20 @@ function DashboardContent({ label, metrics, vistorias, execucao }: { label: stri
                   {vistProblemas.length > 0 ? (
                     <div className="grid gap-3 md:grid-cols-2">
                       {vistProblemas.map((prob) => (
-                        <div key={prob.ID_Execucao} className="bg-red-50/50 p-4 rounded-xl border border-red-100 flex flex-col gap-2">
+                        <div key={prob.ID_Execucao} className="bg-slate-800/80 p-4 rounded-xl border border-red-500/30 flex flex-col gap-2 shadow-inner">
                           <div className="flex justify-between items-start">
-                            <Badge variant="outline" className="bg-white text-slate-600 border-slate-200">
+                            <Badge variant="outline" className="bg-slate-900 text-cyan-300 border-cyan-800/50">
                               {prob.Local}{prob.Andar ? ` - ${prob.Andar}` : ''}
                             </Badge>
-                            <span className="text-xs font-medium text-slate-400 bg-white px-2 py-1 rounded shadow-sm">
+                            <span className="text-xs font-bold text-red-300 bg-red-950/50 px-2 py-1 rounded shadow-sm border border-red-900/50">
                               {prob.Item}
                             </span>
                           </div>
-                          <p className="text-slate-800 font-medium mt-1">{prob.Descricao_Problema}</p>
+                          <p className="text-slate-200 font-medium mt-1">{prob.Descricao_Problema}</p>
                           {prob.Foto_URL && prob.Foto_URL.trim() !== '' && (
-                            <div className="mt-2 text-sm text-primary flex items-center gap-1 font-medium bg-primary/5 w-fit px-3 py-1.5 rounded-lg">
+                            <div className="mt-2 text-sm text-blue-300 flex items-center gap-1 font-medium bg-blue-900/30 border border-blue-800/50 w-fit px-3 py-1.5 rounded-lg">
                               <Camera size={14} />
-                              <a href={prob.Foto_URL} target="_blank" rel="noopener noreferrer" className="hover:underline">
+                              <a href={prob.Foto_URL} target="_blank" rel="noopener noreferrer" className="hover:text-blue-100 transition-colors">
                                 Ver Foto Anexada
                               </a>
                             </div>
@@ -288,7 +288,7 @@ function DashboardContent({ label, metrics, vistorias, execucao }: { label: stri
                       ))}
                     </div>
                   ) : (
-                    <div className="bg-green-50 text-green-700 p-4 rounded-xl border border-green-100 text-center font-medium">
+                    <div className="bg-green-900/20 text-green-300 p-4 rounded-xl border border-green-800/50 text-center font-medium">
                       Nenhum problema registrado nesta vistoria.
                     </div>
                   )}
