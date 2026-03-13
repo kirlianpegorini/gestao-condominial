@@ -34,17 +34,15 @@ export default function Index() {
 
   return (
     <div className="min-h-screen flex flex-col items-center p-6 relative overflow-hidden bg-slate-950 font-sans text-slate-100">
-      {/* Background Image / Overlay - Only visibly shown on Login */}
-      {!role && (
-        <div 
-          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-40 mix-blend-luminosity transition-opacity duration-1000"
-          style={{ backgroundImage: "url('/background-login.png')" }}
-        />
-      )}
-      <div className="absolute inset-0 z-0 bg-gradient-to-b from-slate-900/80 via-slate-950/90 to-slate-950" />
+      {/* Background Image - Sempre visível, com overlay escuro suave para leitura */}
+      <div 
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-60 transition-opacity duration-1000"
+        style={{ backgroundImage: "url('/background-login.png')" }}
+      />
+      <div className="absolute inset-0 z-0 bg-black/50 backdrop-blur-[2px]" />
 
       {/* Content */}
-      <div className="relative z-10 w-full max-w-md flex flex-col items-center mt-12 mb-auto">
+      <div className="relative z-10 w-full max-w-md flex flex-col items-center mt-8 mb-auto">
         
         {/* Badge */}
         <motion.div
@@ -61,13 +59,13 @@ export default function Index() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-center w-full flex flex-col items-center mb-6"
+          className="text-center w-full flex flex-col items-center mb-10"
         >
           {/* Logo Verttek (Integrated text) */}
           <img 
             src="/verttek-logo-full.png" 
             alt="Verttek - Gestão e Fiscalização Condominiais" 
-            className="w-full max-w-[280px] object-contain drop-shadow-2xl"
+            className="w-full max-w-sm sm:max-w-md px-2 object-contain drop-shadow-2xl"
           />
         </motion.div>
 
