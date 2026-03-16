@@ -34,12 +34,20 @@ export default function Index() {
 
   return (
     <div className="min-h-screen flex flex-col items-center p-6 relative overflow-hidden bg-slate-950 font-sans text-slate-100">
-      {/* Background Image - Sempre visível, com overlay escuro suave para leitura */}
+      {/* Background Desktop (landscape) — escondido em mobile */}
       <div 
-        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-80 transition-opacity duration-1000"
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-80 transition-opacity duration-1000 hidden md:block"
         style={{ backgroundImage: "url('/background-login.jpg')" }}
       />
-      <div className="absolute inset-0 z-0 bg-black/40 backdrop-blur-[1px]" />
+      <div className="absolute inset-0 z-0 bg-black/40 backdrop-blur-[1px] hidden md:block" />
+
+      {/* Background Mobile (portrait) — escondido em desktop */}
+      <div 
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-95 transition-opacity duration-1000 block md:hidden"
+        style={{ backgroundImage: "url('/background-mobile.jpg')" }}
+      />
+      {/* Overlay mobile — mais leve, quase sem fosco */}
+      <div className="absolute inset-0 z-0 bg-black/20 block md:hidden" />
 
       {/* Content */}
       <div className="relative z-10 w-full max-w-md flex flex-col items-center mt-8 mb-auto">
